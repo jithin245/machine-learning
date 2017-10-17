@@ -27,15 +27,15 @@ features_train, features_test, labels_train, labels_test = preprocess()
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 
-clf = SVC(kernel='linear')
+clf = SVC(kernel='rbf', C=10000)
 t0 = time()
 clf.fit(features_train, labels_train)
 print "Time taken for training : ", round(time()-t0, 3), 's'
 
 t1 = time()
 pred = clf.predict(features_test)
+print "Number of predicted to be in Chris(1) class ", sum([1 for p in pred if p == 1])
 print "Time taken for predicting : ", round(time()-t1, 3), 's'
-
 print(accuracy_score(pred, labels_test))
 #########################################################
 
