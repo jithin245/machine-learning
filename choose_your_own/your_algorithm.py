@@ -30,14 +30,35 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+clf = RandomForestClassifier()
+clf.fit(features_train, labels_train)
+
+pred = clf.predict(features_test)
+print "Random Forest Classifier Accuracy Score ", accuracy_score(pred, labels_test)
+
+from sklearn.ensemble import AdaBoostClassifier
+
+clf = AdaBoostClassifier()
+clf.fit(features_train, labels_train)
+
+pred = clf.predict(features_test)
+print " AdaBoost Classifier Accuracy Score ", accuracy_score(pred, labels_test)
+
+from sklearn.neighbors import KNeighborsRegressor
+
+clf = KNeighborsRegressor(n_neighbors=1)
+clf.fit(features_train, labels_train)
+
+pred = clf.predict(features_test)
+print " K Nearest Neighbours Accuracy Score ", accuracy_score(pred, labels_test)
 
 
 
 
-
-
-
-
+# 
 try:
     prettyPicture(clf, features_test, labels_test)
 except NameError:
