@@ -9,11 +9,27 @@ from feature_format import featureFormat, targetFeatureSplit
 
 ### read in data dictionary, convert to numpy array
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
+#Remove the spreadsheet quirk total
+data_dict.pop( 'TOTAL', 0 )
+
+#Get Persons with bonus > 5M and salary > 1M
+big_bosses  =  [key for key,info in data_dict.items() 
+                    if (info['salary'] != 'NaN' and info['salary'] > 1000000 
+                    and info['bonus'] > 5000000 and info['bonus'] != 'NaN') ]
+
+print big_bosses
+
 features = ["salary", "bonus"]
 data = featureFormat(data_dict, features)
 
-
 ### your code below
+for point in data:
+    salary = point[0]
+    bonus = point[1]
+    matplotlib.pyplot.scatter( salary, bonus )
 
+matplotlib.pyplot.xlabel("salary")
+matplotlib.pyplot.ylabel("bonus")
+matplotlib.pyplot.show()
 
 
