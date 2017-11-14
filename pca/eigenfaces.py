@@ -81,6 +81,8 @@ X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 print "done in %0.3fs" % (time() - t0)
 
+print "Explained Variance Ratio for PCA 1 = {} and for PCA 2 = {} " \
+            .format(pca.explained_variance_ratio_[0], pca.explained_variance_ratio_[1])
 
 ###############################################################################
 # Train a SVM classification model
@@ -97,6 +99,8 @@ clf = clf.fit(X_train_pca, y_train)
 print "done in %0.3fs" % (time() - t0)
 print "Best estimator found by grid search:"
 print clf.best_estimator_
+
+print "Best Parameters ", clf.best_params_ 
 
 
 ###############################################################################
